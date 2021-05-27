@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class SnakeMovment : MonoBehaviour
 {
@@ -10,16 +10,20 @@ public class SnakeMovment : MonoBehaviour
 
     public float z_offset = -0.5f;
 
-    public GameObject[] tailObjects = new GameObject[1];
+    public List<GameObject> tailObjects = new List<GameObject>();
 
     public GameObject tailPrefab;
+
+    public Text scoreText;
+    public int score =0;
     void Start()
     {
-        tailObjects[0] = gameObject;
+        tailObjects.Add(gameObject);
     }
 
 void Update()
     {
+        scoreText.text = score.ToString();
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.D))
         {
@@ -31,11 +35,11 @@ void Update()
         }
     }
 
-    void AddTail()
+    public void AddTail()
     {
-        tailObjects = new GameObject[tailObjects.Length + 1];
-        Vector3 newTailPos = tailObjects[tailObjects.Length].transform.position;
-        newTailPos.z -= z_offset;
-        tailObjects[tailObjects.Length] = GameObject.Instantiate(tailPrefab, newTailPos, Quaternion.identity);
+        score++;
+        Vector3 newTailPos = tailObjects[tailObjects.Count-1].transform.position;
+        //newTailPos.z -= z_offset;
+        tailObjects.Add(GameObject.Instantiate(tailPrefab, newTailPos, Quaternion.identity)); //as GameObject);
     }
 }

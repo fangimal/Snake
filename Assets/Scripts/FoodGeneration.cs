@@ -11,14 +11,22 @@ public class FoodGeneration : MonoBehaviour
     public Vector3 curPos;
     void Start()
     {
-        RandomPosition();
-        curFood = GameObject.Instantiate(foodPrefabs, curPos, Quaternion.identity);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!curFood)
+        {
+            AddNewFood();
+        }
+    }
+
+    void AddNewFood()
+    {
+        RandomPosition();
+        curFood = GameObject.Instantiate(foodPrefabs, curPos, Quaternion.identity); //as GameObject;
     }
 
     void RandomPosition()
