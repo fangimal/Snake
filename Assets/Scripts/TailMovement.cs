@@ -13,12 +13,12 @@ public class TailMovement : MonoBehaviour
     public int indx;
     void Start()
     {
-        indx = mainSnake.tailObjects.IndexOf(gameObject);
         mainSnake = GameObject.FindGameObjectWithTag("SnakeMain").GetComponent<SnakeMovment>();
         speed = mainSnake.speed + 1f;
-        //tailTarget = mainSnake.tailObjects[mainSnake.tailObjects.Count-2].transform.position;
-       // tailTarget.z -= mainSnake.z_offset;
+        tailTarget = mainSnake.tailObjects[mainSnake.tailObjects.Count - 2].transform.position;
+        tailTarget.z -= mainSnake.z_offset;
         tailTargetObject = mainSnake.tailObjects[mainSnake.tailObjects.Count - 2];
+        indx = mainSnake.tailObjects.IndexOf(gameObject);
     }
 
 

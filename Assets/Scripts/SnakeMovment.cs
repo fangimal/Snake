@@ -15,7 +15,7 @@ public class SnakeMovment : MonoBehaviour
     public GameObject tailPrefab;
 
     public Text scoreText;
-    public int score =0;
+    public int score = 0;
     void Start()
     {
         tailObjects.Add(gameObject);
